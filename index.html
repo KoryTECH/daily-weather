@@ -1,32 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-  </head>
-  <body>
-    <div id="hourly">
-      <nav>
-        <div class="name-location">
-          <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
-          <div class="main">
-            <div id="location">San fransisco</div>
-            <div id="date">Monday 12 OCT</div>
-          </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <section id="hourly">
+        <nav>
+            <div class="name-location">
+                <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+                <div class="main">
+                    <div id="location">San fransisco</div>
+                    <div id="date">Monday 12 OCT</div>
+                </div>
+            </div>
+            <div id="search">
+                <input type="search" name="" id="input">
+                <button type="button">&#8981;</button>
+            </div>
+        </nav>
+        <div class="weather-info">
+            <span id="temp">72℃</span>
+            <span id="temp-icon">🔆</span>
+            <span id="temp-description">Clear sky</span>
+            <span id="temp-range">H: 78℃ L: 69℃ </span>
         </div>
-        <div id="search">
-            <input type="search" name="" id="input">
-            <button type="button">&#8981;</button>
-        </div>
-      </nav>
-    </div>
-    <div id="daily"></div>
-  </body>
-  <!-- <script src="script.js"></script> -->
+    </section>
+    <section id="daily"></section>
+</body>
+<!-- <script src="script.js"></script> -->
+
 </html>

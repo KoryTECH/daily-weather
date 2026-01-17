@@ -1,28 +1,30 @@
 'use strict'
-// ipify and openweather api key and url
-const IPIFY_URL = `http://ip-api.com/json/`
 const OPENWEATHER_URL = `https://api.openweathermap.org/data/2.5/forecast`
 const OPENWEATHER_KEY = `5efc126ec2af885ecd3006733142d32b`
 
-let latitude;
-let longitude;
-// window.onload = function(){
-//     fetch(`${IPIFY_URL}`)
-//     .then(response => response.json())
-//     .then(data => {
-//         console.log(data)
-//         latitude = data.lat
-//         longitude= data.lon
-//         console.log(latitude)
-//         console.log(longitude)
-//     })
-//     .catch((error) => {
-//         console.error('Error fetching visitor IP:', error);
-//     });
-//     // console.log(`lat:${latitude}`)
-//     // console.log(`lon:${longitude}`)
-// }
+let lat;
+let lon;
 
-fetch(`${OPENWEATHER_URL}?lat=6.4474&lon=3.3903&appid=${OPENWEATHER_KEY}&units=metric`)
-.then(response => response.json())
-.then(console.log)
+window.onload = function () {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        lat = position.coords.latitude;
+        lon = position.coords.longitude;
+        fetch(`${OPENWEATHER_URL}?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_KEY}&units=metric`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            document.querySelector('#location').textContent = data.city.name;
+            document.querySelector('#date').textContent = data.list[0].dt_txt;
+        })
+      });
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+    
+}
+// console.log(`lat:${lat}, lon:${lon}`)
+
+// fetch(`${OPENWEATHER_URL}?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_KEY}&units=metric`)
+// .then(response => response.json())
+// .then(console.log)
