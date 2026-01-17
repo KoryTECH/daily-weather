@@ -2,4 +2,60 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+body {
+    background: url(bg.webp) center center/ cover fixed;
+    min-height: 200vh;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 20px;
+}
+.name-location {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+i {
+    font-size: 2rem;
+    color: white;
+    background: transparent;
+}
+#location {
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bold;
+}
+#date {
+    font-size: .8rem;
+    color: white;
+    font-family: sans-serif;
+}
+#search {
+    padding: 50px;
+}
+input {
+    width: 300px;
+    height: 50px;
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 20px;
+    outline: none;
+    padding: 10px;
+    color: white;
+}
+button {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    font-size: 3rem;
+    background: midnightblue;
+    border: none;
+    color: white;
+
 }

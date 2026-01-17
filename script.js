@@ -6,19 +6,23 @@ const OPENWEATHER_KEY = `5efc126ec2af885ecd3006733142d32b`
 
 let latitude;
 let longitude;
-window.onload = function(){
-    fetch(`${IPIFY_URL}`)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data)
-        latitude = data.lat
-        longitude= data.lon
-        // console.log(latitude)
-        // console.log(longitude)
-    })
-    .catch((error) => {
-        console.error('Error fetching visitor IP:', error);
-    });
-    console.log(`lat:${latitude}`)
-    console.log(`lon:${longitude}`)
-}
+// window.onload = function(){
+//     fetch(`${IPIFY_URL}`)
+//     .then(response => response.json())
+//     .then(data => {
+//         console.log(data)
+//         latitude = data.lat
+//         longitude= data.lon
+//         console.log(latitude)
+//         console.log(longitude)
+//     })
+//     .catch((error) => {
+//         console.error('Error fetching visitor IP:', error);
+//     });
+//     // console.log(`lat:${latitude}`)
+//     // console.log(`lon:${longitude}`)
+// }
+
+fetch(`${OPENWEATHER_URL}?lat=6.4474&lon=3.3903&appid=${OPENWEATHER_KEY}&units=metric`)
+.then(response => response.json())
+.then(console.log)
