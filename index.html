@@ -28,14 +28,44 @@
             </div>
         </nav>
         <div class="weather-info">
-            <span id="temp">72℃</span>
+            <span id="main-temp"></span>
             <span id="temp-icon">🔆</span>
             <span id="temp-description">Clear sky</span>
             <span id="temp-range">H: 78℃ L: 69℃ </span>
         </div>
+        <div class="hourly-display">
+          <span class="today-forecast">TODAY FORECAST</span>
+          <div class="five-hours-forecast">
+            <span class="first hour">
+                <div class="current">Now</div>
+                <div class="current hourly weather-description">🔆</div>
+                <div class="current hourly temp">72℃</div>
+            </span>
+            <span class="second hour">
+                <div class="one-hour time">Now</div>
+                <div class="one-hour weather-description">🔆</div>
+                <div class="one-hour temp">72℃</div>
+            </span>
+            <span class="third hour">
+                <div class="two-hour time">Now</div>
+                <div class="two-hour weather-description">🔆</div>
+                <div class="two-hour temp">72℃</div>
+            </span>
+            <span class="fourth hour">
+                <div class="third-hour time">Now</div>
+                <div class="third-hour weather-description">🔆</div>
+                <div class="third-hour temp">72℃</div>
+            </span>
+            <span class="fifth hour">
+                <div class="time">Now</div>
+                <div class="hourly weather-description">🔆</div>
+                <div class="hourly temp">72℃</div>
+            </span>
+          </div>
+        </div>
     </section>
     <section id="daily"></section>
 </body>
-<!-- <script src="script.js"></script> -->
+<script src="script.js"></script>
 
 </html>

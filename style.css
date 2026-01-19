@@ -6,7 +6,7 @@
 }
 body {
     background: url(bg.webp) center center/ cover fixed;
-    min-height: 200vh;
+    min-height: 100vh;
 }
 nav {
     display: flex;
@@ -20,6 +20,7 @@ nav {
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
+    font-weight: bold;
 }
 i {
     font-size: 2rem;
@@ -52,6 +53,7 @@ input {
     outline: none;
     padding: 10px;
     color: white;
+    font-size: 1.2rem;
 }
 button {
     height: 50px;
@@ -73,7 +75,7 @@ button {
     color: white;
     gap: 10px;
 }
-#temp {
+#main-temp {
     font-size: clamp(40px, 5rem, 8rem);
     font-weight: bold;
 }
@@ -87,4 +89,33 @@ button {
 #temp-range {
     font-weight: bold;
     font-size: 1.1rem;
+}
+.hourly-display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 50px;
+    gap: 20px;
+}
+.today-forecast {
+    color: white;
+    font-weight: bold;
+}
+.five-hours-forecast {
+    display: flex;
+    gap: 20px;
+}
+.hour {
+    backdrop-filter: blur(2rem);
+    border: 1px solid white;
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    border-radius: 30px;
+    gap: 10px;
+    color: white;
 }
