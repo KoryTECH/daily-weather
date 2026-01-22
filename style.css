@@ -119,3 +119,10 @@ button {
     /* gap: 10px; */
     color: white;
 }
+.hour:hover {
+    transform: scale(1.1);
+    transition: .5s ease-in-out;
+}
+.hidden {
+    display: none;
+}

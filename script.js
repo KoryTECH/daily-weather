@@ -4,23 +4,16 @@ const OPENWEATHER_KEY = `5efc126ec2af885ecd3006733142d32b`;
 const OPENCAGE_KEY = `75caf9cfcc1c44f2914802b3d1cd08aa`;
 let lat;
 let lon;
-const encodedLocation = `lagos`
-// this function has the api that gets the location entered in the input section then gets the latitude and longitude, then update the longitude and latitude variable
-function getnewLonAndLat(){
-  fetch(`https://api.opencagedata.com/geocode/v1/json?q=${encodedLocation}&key=${OPENCAGE_KEY}`)
-  .then(response => response.json())
-  .then(data => {
-    console.log(data)
-  })
-}
 
-// getnewLonAndLat();
+const button = document.querySelector('button');
+const input = document.getElementById('input')
+
 // function to fetch and display data from openweather api
 function fetchAndDisplay(){
   fetch(`${OPENWEATHER_URL}?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_KEY}&units=metric`)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
+            // console.log(data)
             const date = data.list[0].dt_txt.split(' ')[0]
             const locationName = data.city.name;
             const minRange = data.list[0].main.temp_min;
@@ -35,7 +28,7 @@ function fetchAndDisplay(){
             document.getElementById('temp-icon').innerHTML = `<img src="https://openweathermap.org/img/wn/${temIcon}@2x.png" alt="${description}">`;            document.getElementById('temp-range').innerText = `H:${maxRange} L:${minRange}`;
             // giving a variable to the data List
             let list = data.list;
-            console.log(list)
+            // console.log(list)
             // gets the first five object in the array and store them in an array called hours
             let hours = [];
             for (let i = 0; i < 5; i++) {
@@ -60,6 +53,9 @@ function fetchAndDisplay(){
               `;
               document.querySelector('.five-hours-forecast').innerHTML = hourlyHtml
                 }
+
+          // displaying the daily data
+                let dailyHtml = ''
         //     days.forEach(day=>{
         //         document.querySelector('.five-hour-forecast').innerHTML = `
         //             <div class="hour">
@@ -74,6 +70,18 @@ function fetchAndDisplay(){
             
         })
 }
+
+let encodedLocation = ''
+// this function has the api that gets the location entered in the input section then gets the latitude and longitude, then update the longitude and latitude variable
+function getnewLonAndLat(){
+  fetch(`https://api.opencagedata.com/geocode/v1/json?q=${encodedLocation}&key=${OPENCAGE_KEY}`)
+  .then(response => response.json())
+  .then(data => {
+    // console.log(data)
+    lat = data.results[0].geometry.lat;
+    lon = data.reuslts[0].geometry.lng;
+  })
+}
 // getting the user location(longitude and latitude) onload to fetch the weather info on load and updates the longitude and latitude variable
 window.onload = function () {
   if (navigator.geolocation) {
@@ -86,3 +94,19 @@ window.onload = function () {
       console.log("Geolocation is not supported by this browser.");
     }
 }
+
+input.classList.add('hidden')
+button.addEventListener('click', function(){
+  if(input.classList.contains('hidden')){
+    input.classList.remove('hidden')
+  }
+  else if(!input.classList.contains('hidden') && input.value !== '') {
+    input.value = encodedLocation
+    getnewLonAndLat()
+    fetchAndDisplay()
+    console.log('fetching')
+  }
+  else {
+    input.classList.add('hidden')
+  }
+})
