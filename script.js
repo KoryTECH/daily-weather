@@ -51,7 +51,7 @@ function fetchAndDisplay(){
                       <div class="current">${hours[x].main.temp}</div>
                   </div>
               `;
-              document.querySelector('.five-hour-forecast').innerHTML = hourlyHtml
+              document.querySelector('.five-hours-forecast').innerHTML = hourlyHtml
                 }
         //     days.forEach(day=>{
         //         document.querySelector('.five-hour-forecast').innerHTML = `
