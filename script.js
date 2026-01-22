@@ -1,10 +1,9 @@
 'use strict'
 const OPENWEATHER_URL = `https://api.openweathermap.org/data/2.5/forecast`;
 const OPENWEATHER_KEY = `5efc126ec2af885ecd3006733142d32b`;
-const OPENCAGE_KEY = `75caf9cfcc1c44f2914802b3d1cd08aa`;
+// const OPENCAGE_KEY = `75caf9cfcc1c44f2914802b3d1cd08aa`;
 let lat;
 let lon;
-
 const button = document.querySelector('button');
 const input = document.getElementById('input')
 
@@ -13,7 +12,8 @@ function fetchAndDisplay(){
   fetch(`${OPENWEATHER_URL}?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_KEY}&units=metric`)
         .then(response => response.json())
         .then(data => {
-            // console.log(data)
+            console.log(data)
+            console.log("displaying")
             const date = data.list[0].dt_txt.split(' ')[0]
             const locationName = data.city.name;
             const minRange = data.list[0].main.temp_min;
@@ -67,21 +67,29 @@ function fetchAndDisplay(){
         //     })
             console.log(hours)
             console.log(days)
+            console.log("displayed")
             
         })
-}
-
-let encodedLocation = ''
+        .catch(error => {
+          document.getElementById('main-temp').innerText  = 'Refresh'
+          console.error("Error:", error);
+        })
+  }
+let cityName = '';
 // this function has the api that gets the location entered in the input section then gets the latitude and longitude, then update the longitude and latitude variable
 function getnewLonAndLat(){
-  fetch(`https://api.opencagedata.com/geocode/v1/json?q=${encodedLocation}&key=${OPENCAGE_KEY}`)
+  fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${OPENWEATHER_KEY}`)
   .then(response => response.json())
   .then(data => {
-    // console.log(data)
-    lat = data.results[0].geometry.lat;
-    lon = data.reuslts[0].geometry.lng;
+    console.log(data)
+    console.log("getting new lat and lon")
+    
+    lat = data[0].lat;
+    lon = data[0].lon;
+
   })
 }
+// getnewLonAndLat()
 // getting the user location(longitude and latitude) onload to fetch the weather info on load and updates the longitude and latitude variable
 window.onload = function () {
   if (navigator.geolocation) {
@@ -95,18 +103,21 @@ window.onload = function () {
     }
 }
 
-input.classList.add('hidden')
+input.classList.add('hidden');
 button.addEventListener('click', function(){
   if(input.classList.contains('hidden')){
     input.classList.remove('hidden')
   }
   else if(!input.classList.contains('hidden') && input.value !== '') {
-    input.value = encodedLocation
-    getnewLonAndLat()
-    fetchAndDisplay()
+    cityName = input.value;
     console.log('fetching')
+    getnewLonAndLat()
+    console.log('got new lat and lon')
+    fetchAndDisplay()
+    console.log('already displayed on click')
+    
   }
   else {
     input.classList.add('hidden')
   }
-})
+});
