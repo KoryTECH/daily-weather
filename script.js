@@ -86,6 +86,7 @@ function getnewLonAndLat(){
     
     lat = data[0].lat;
     lon = data[0].lon;
+    fetchAndDisplay()
 
   })
 }
@@ -113,7 +114,6 @@ button.addEventListener('click', function(){
     console.log('fetching')
     getnewLonAndLat()
     console.log('got new lat and lon')
-    fetchAndDisplay()
     console.log('already displayed on click')
     
   }
