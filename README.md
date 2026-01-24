@@ -2,8 +2,8 @@
 
 A beautiful and responsive weather forecast application that provides real-time weather information based on your location or any city worldwide.
 
-![Weather App Preview]
-<!-- Add a screenshot of your app -->
+<img width="1365" height="646" alt="image" src="https://github.com/user-attachments/assets/44bf78ed-681b-4b57-ba27-409995f41cd0" />
+
 
 ## 🌟 Features
 
