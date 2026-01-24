@@ -25,7 +25,8 @@ function fetchAndDisplay(){
             document.getElementById('location').innerText = locationName;
             document.getElementById('date').innerText = date;
             document.getElementById('temp-description').innerText = description;
-            document.getElementById('temp-icon').innerHTML = `<img src="https://openweathermap.org/img/wn/${temIcon}@2x.png" alt="${description}">`;            document.getElementById('temp-range').innerText = `H:${maxRange} L:${minRange}`;
+            document.getElementById('temp-icon').innerHTML = `<img src="https://openweathermap.org/img/wn/${temIcon}@2x.png" alt="${description}">`;   
+            document.getElementById('temp-range').innerText = `H:${maxRange} L:${minRange}`;
             // giving a variable to the data List
             let list = data.list;
             // console.log(list)
@@ -36,12 +37,12 @@ function fetchAndDisplay(){
             }
             // gets the five days out of the response from the api
             let days = [];
-            for(let index = 0; index < 39; index+=5 ){
+            for(let index = 0; index < 39; index+=8 ){
               days.push(list[index])
             }
             // displaying the hourly data
             let hourlyHtml='';
-                for(let x = 0; x<5; x++){
+                for(let x = 0; x<hours.length; x++){
                   const iconCode = hours[x].weather[0].icon;
                   const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
                   hourlyHtml += `
@@ -56,15 +57,24 @@ function fetchAndDisplay(){
 
           // displaying the daily data
                 let dailyHtml = ''
-        //     days.forEach(day=>{
-        //         document.querySelector('.five-hour-forecast').innerHTML = `
-        //             <div class="hour">
-        //             <div class="current">${data.list[0].dt_txt.split(' ')[i]}</div>
-        //             <div class="current hourly weather-description">${data.list[i].dt_txt.split(' ')[1]}</div>
-        //             <div class="current hourly temp">${list[x].main.temp}</div>
-        //           </div>
-        //       `;
-        //     })
+                for(let y = 0; y < days.length; y++){
+                  const iconCode = days[y].weather[0].icon;
+                  const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+                  dailyHtml += `
+                  <div class="first day">
+                    <span id="first-day-icon"><img src="${iconUrl}" alt="${days[y].weather[0].description}"></span>
+                    <span id="first-day-date">
+                        <p id="day-of-the-week">${days[y].dt_txt.split(' ')[0]}</p>
+                        <p id="weather-description">${days[y].weather[0].description}</p>
+                    </span>
+                    <span id="temp">
+                        <p id="main-temp-of-the-day">${days[y].main.temp}°</p>
+                        <p id="temp-range">/${days[y].main.temp_max}°</p>
+                    </span>
+                 </div>
+                  `; 
+                  document.querySelector('.next-five-days').innerHTML = dailyHtml
+                }
             console.log(hours)
             console.log(days)
             console.log("displayed")

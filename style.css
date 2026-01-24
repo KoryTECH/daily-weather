@@ -123,6 +123,57 @@ button {
     transform: scale(1.1);
     transition: .5s ease-in-out;
 }
+.daily-display {
+    padding: 10px 50px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.five-days-forecast {
+    color:white;
+    font-weight: bold;
+}
+.next-five-days {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    color: white;
+    background: midnightblue;
+    padding: 20px;
+    border-radius: 20px;
+    max-width: 30rem;
+}
+#first-day-icon {
+    background: darkblue;
+    padding: 10px;
+    border-radius: 10px;
+}
+#first-day-date {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#day-of-the-week {
+    font-weight: bold;
+}
+#weather-description {
+    color: darkgray;
+}
+#temp {
+    display: flex;
+}
+#main-temp-of-the-day{
+    font-weight: bold;
+}
+#temp-range {
+    color: darkgray;
+}
 .hidden {
     display: none;
 }
