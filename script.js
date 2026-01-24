@@ -12,8 +12,6 @@ function fetchAndDisplay(){
   fetch(`${OPENWEATHER_URL}?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_KEY}&units=metric`)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
-            console.log("displaying")
             const date = data.list[0].dt_txt.split(' ')[0]
             const locationName = data.city.name;
             const minRange = data.list[0].main.temp_min;
@@ -29,8 +27,7 @@ function fetchAndDisplay(){
             document.getElementById('temp-range').innerText = `H:${maxRange} L:${minRange}`;
             // giving a variable to the data List
             let list = data.list;
-            // console.log(list)
-            // gets the first five object in the array and store them in an array called hours
+        // gets the first five object in the array and store them in an array called hours
             let hours = [];
             for (let i = 0; i < 5; i++) {
               hours.push(list[i]);
@@ -75,9 +72,16 @@ function fetchAndDisplay(){
                   `; 
                   document.querySelector('.next-five-days').innerHTML = dailyHtml
                 }
-            console.log(hours)
-            console.log(days)
-            console.log("displayed")
+                const humidity =  data.list[0].main.humidity;
+                const feelsLike = data.list[0].main.feels_like;
+                const windSpeed = data.list[0].wind.speed;
+                const pressure = data.list[0].main.pressure;
+
+                  document.getElementById('humidity').innerText = humidity;
+                  document.getElementById('pressure').innerText = pressure;
+                  document.getElementById('wind-speed').innerText = windSpeed;
+                  document.getElementById('feels-like').innerText = feelsLike;
+
             
         })
         .catch(error => {
@@ -91,8 +95,7 @@ function getnewLonAndLat(){
   fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${OPENWEATHER_KEY}`)
   .then(response => response.json())
   .then(data => {
-    console.log(data)
-    console.log("getting new lat and lon")
+    (data)
     
     lat = data[0].lat;
     lon = data[0].lon;
@@ -121,10 +124,7 @@ button.addEventListener('click', function(){
   }
   else if(!input.classList.contains('hidden') && input.value !== '') {
     cityName = input.value;
-    console.log('fetching')
     getnewLonAndLat()
-    console.log('got new lat and lon')
-    console.log('already displayed on click')
     
   }
   else {

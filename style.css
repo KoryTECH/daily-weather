@@ -108,7 +108,6 @@ button {
 .hour {
     backdrop-filter: blur(2rem);
     border: 1px solid white;
-    width: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -116,12 +115,12 @@ button {
     text-align: center;
     padding: 20px 20px;
     border-radius: 30px;
-    /* gap: 10px; */
+    gap: 10px;
     color: white;
 }
 .hour:hover {
     transform: scale(1.1);
-    transition: .5s ease-in-out;
+    transition: .5s;
 }
 .daily-display {
     padding: 10px 50px;
@@ -147,8 +146,14 @@ button {
     background: midnightblue;
     padding: 20px;
     border-radius: 20px;
-    max-width: 30rem;
+    max-width: 50rem;
 }
+.day:hover {
+    transform: scale(1.1);
+    /* transform: scaleY(-50px); */
+    transition: .5s;
+}
+
 #first-day-icon {
     background: darkblue;
     padding: 10px;
@@ -174,6 +179,209 @@ button {
 #temp-range {
     color: darkgray;
 }
+.daily-details {
+    padding: 10px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.details-heading {
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 50rem;
+}
+
+.detail-card {
+    background: rgba(25, 25, 112, 0.6);
+    backdrop-filter: blur(1rem);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.detail-card:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+
+.detail-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8rem;
+    color: lightblue;
+    font-weight: 600;
+}
+
+.detail-header i {
+    font-size: 1rem;
+    color: lightblue;
+}
+
+.detail-value {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.detail-value span:first-child {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.unit {
+    font-size: 1.2rem;
+    color: darkgray;
+}
 .hidden {
     display: none;
+}
+/* Tablet and smaller devices */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+    
+    #search {
+        padding: 20px;
+        gap: 10px;
+    }
+    
+    input {
+        width: 200px;
+        height: 45px;
+        font-size: 1rem;
+    }
+    
+    button {
+        height: 45px;
+        width: 45px;
+        font-size: 2.5rem;
+    }
+    
+    #location {
+        font-size: 1.2rem;
+    }
+    
+    #main-temp {
+        font-size: clamp(50px, 10vw, 100px);
+    }
+    
+    .hourly-display,
+    .daily-display,
+    .daily-details {
+        padding: 10px 20px;
+    }
+    
+    .five-hours-forecast {
+        overflow-x: auto;
+        gap: 10px;
+    }
+    
+    .hour {
+        min-width: 100px;
+        padding: 15px 10px;
+    }
+    
+    .details-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .day {
+        gap: 20px;
+        padding: 15px;
+        flex-wrap: wrap;
+    }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+    nav {
+        padding: 15px 10px;
+    }
+    
+    .name-location {
+        gap: 10px;
+    }
+    
+    i {
+        font-size: 1.5rem;
+    }
+    
+    #location {
+        font-size: 1rem;
+    }
+    
+    #date {
+        font-size: 0.7rem;
+    }
+    
+    #search {
+        padding: 10px;
+        flex-direction: column;
+    }
+    
+    input {
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    #main-temp {
+        font-size: clamp(40px, 15vw, 80px);
+    }
+    
+    #temp-description {
+        font-size: 1.5rem;
+    }
+    
+    #temp-range {
+        font-size: 1rem;
+    }
+    
+    .hourly-display,
+    .daily-display,
+    .daily-details {
+        padding: 10px 15px;
+    }
+    
+    .five-hours-forecast {
+        gap: 10px;
+        flex-direction: column;
+    }
+    
+    .hour {
+        min-width: 80px;
+        padding: 10px 8px;
+        font-size: 0.9rem;
+    }
+    
+    .day {
+        gap: 15px;
+        padding: 15px 10px;
+        font-size: 0.9rem;
+    }
+    
+    .detail-card {
+        padding: 15px;
+    }
+    
+    .detail-value span:first-child {
+        font-size: 2rem;
+    }
 }
