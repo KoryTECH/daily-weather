@@ -246,6 +246,14 @@ button {
     font-size: 1.2rem;
     color: darkgray;
 }
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    color: white;
+    padding: 30px;
+}
 .hidden {
     display: none;
 }
