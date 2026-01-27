@@ -120,7 +120,7 @@ window.onload = function () {
 input.classList.add('hidden');
 button.addEventListener('click', function(){
   if(input.classList.contains('hidden')){
-    input.classList.remove('hidden')
+    input.classList.remove('hidden');
   }
   else if(!input.classList.contains('hidden') && input.value !== '') {
     cityName = input.value;
