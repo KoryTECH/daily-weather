@@ -60,7 +60,7 @@ function fetchAndDisplay(){
                   dailyHtml += `
                   <div class="first day">
                     <span id="first-day-icon"><img src="${iconUrl}" alt="${days[y].weather[0].description}"></span>
-                    <span id="first-day-date">
+                    <span id="first- day-date">
                         <p id="day-of-the-week">${days[y].dt_txt.split(' ')[0]}</p>
                         <p id="weather-description">${days[y].weather[0].description}</p>
                     </span>
