@@ -1,7 +1,7 @@
 'use strict'
 const OPENWEATHER_URL = `https://api.openweathermap.org/data/2.5/forecast`;
 const OPENWEATHER_KEY = `5efc126ec2af885ecd3006733142d32b`;
-// const OPENCAGE_KEY = `75caf9cfcc1c44f2914802b3d1cd08aa`;
+const OPENCAGE_KEY = `75caf9cfcc1c44f2914802b3d1cd08aa`;
 let lat;
 let lon;
 const button = document.querySelector('button');
@@ -12,6 +12,7 @@ function fetchAndDisplay(){
   fetch(`${OPENWEATHER_URL}?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_KEY}&units=metric`)
         .then(response => response.json())
         .then(data => {
+          console.log(data)
             const date = data.list[0].dt_txt.split(' ')[0]
             const locationName = data.city.name;
             const minRange = data.list[0].main.temp_min;
@@ -92,13 +93,15 @@ function fetchAndDisplay(){
 let cityName = '';
 // this function has the api that gets the location entered in the input section then gets the latitude and longitude, then update the longitude and latitude variable
 function getnewLonAndLat(){
-  fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${OPENWEATHER_KEY}`)
+  fetch(`https://api.opencagedata.com/geocode/v1/json?${cityName}q=&key=${OPENCAGE_KEY}`)
   .then(response => response.json())
   .then(data => {
-    (data)
+    console.log(data)
     
     lat = data[0].lat;
     lon = data[0].lon;
+    console.log(`lat:${lat}`)
+    console.log(`lon:${lon}`)
     fetchAndDisplay()
 
   })
