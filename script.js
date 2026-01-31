@@ -93,13 +93,13 @@ function fetchAndDisplay(){
 let cityName = '';
 // this function has the api that gets the location entered in the input section then gets the latitude and longitude, then update the longitude and latitude variable
 function getnewLonAndLat(){
-  fetch(`https://api.opencagedata.com/geocode/v1/json?${cityName}q=&key=${OPENCAGE_KEY}`)
+  fetch(`https://api.opencagedata.com/geocode/v1/json?q=${cityName}&key=${OPENCAGE_KEY}`)
   .then(response => response.json())
   .then(data => {
     console.log(data)
     
-    lat = data[0].lat;
-    lon = data[0].lon;
+    lat = data.results[0].geometry.lat;
+    lon = data.results[0].geometry.lng;
     console.log(`lat:${lat}`)
     console.log(`lon:${lon}`)
     fetchAndDisplay()
@@ -121,7 +121,7 @@ window.onload = function () {
 }
 
 input.classList.add('hidden');
-button.addEventListener('click', function(){
+button.addEventListener('click', function(event){
   if(input.classList.contains('hidden')){
     input.classList.remove('hidden');
   }
@@ -133,4 +133,5 @@ button.addEventListener('click', function(){
   else {
     input.classList.add('hidden')
   }
+
 });
