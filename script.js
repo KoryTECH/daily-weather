@@ -121,7 +121,7 @@ window.onload = function () {
 }
 
 input.classList.add('hidden');
-button.addEventListener('click', function(event){
+button.addEventListener('click', function(){
   if(input.classList.contains('hidden')){
     input.classList.remove('hidden');
   }
@@ -134,4 +134,18 @@ button.addEventListener('click', function(event){
     input.classList.add('hidden')
   }
 
+});
+input.addEventListener('keyup', function(event){
+  if(event.key === "Enter") {
+    if(input.classList.contains('hidden')){
+      input.classList.remove('hidden');
+    }
+    else if(!input.classList.contains('hidden') && input.value !== '') {
+      cityName = input.value;
+      getnewLonAndLat()
+    }
+    else {
+      input.classList.add('hidden')
+    }
+}
 });
