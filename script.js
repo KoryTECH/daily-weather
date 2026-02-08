@@ -119,33 +119,33 @@ window.onload = function () {
       console.log("Geolocation is not supported by this browser.");
     }
 }
-
-input.classList.add('hidden');
+const waveGroup = document.querySelector('.wave-group') 
+waveGroup.classList.add('hidden');
 button.addEventListener('click', function(){
-  if(input.classList.contains('hidden')){
-    input.classList.remove('hidden');
+  if(waveGroup.classList.contains('hidden')){
+    waveGroup.classList.remove('hidden');
   }
-  else if(!input.classList.contains('hidden') && input.value !== '') {
+  else if(!waveGroup.classList.contains('hidden') && input.value !== '') {
     cityName = input.value;
     getnewLonAndLat()
     
   }
   else {
-    input.classList.add('hidden')
+    waveGroup.classList.add('hidden')
   }
 
 });
 input.addEventListener('keyup', function(event){
   if(event.key === "Enter") {
-    if(input.classList.contains('hidden')){
-      input.classList.remove('hidden');
+    if(waveGroup.classList.contains('hidden')){
+      waveGroup.classList.remove('hidden');
     }
-    else if(!input.classList.contains('hidden') && input.value !== '') {
+    else if(!waveGroup.classList.contains('hidden') && input.value !== '') {
       cityName = input.value;
       getnewLonAndLat()
     }
     else {
-      input.classList.add('hidden')
+      waveGroup.classList.add('hidden')
     }
 }
 });
