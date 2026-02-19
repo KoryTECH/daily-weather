@@ -40,39 +40,39 @@ function fetchAndDisplay(){
             }
             // displaying the hourly data
             let hourlyHtml='';
-                for(let x = 0; x<hours.length; x++){
-                  const iconCode = hours[x].weather[0].icon;
+            hours.forEach(hour => {
+              const iconCode = hour.weather[0].icon;
                   const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
                   hourlyHtml += `
                     <div class="hour">
-                      <div class="current">${hours[x].dt_txt.split(' ')[1]}</div>
-                      <div class="current hourly weather-icon"><img src="${iconUrl}" alt="${hours[x].weather[0].description}"></div>
-                      <div class="current">${hours[x].main.temp}℃</div>
+                      <div class="current">${hour.dt_txt.split(' ')[1]}</div>
+                      <div class="current hourly weather-icon"><img src="${iconUrl}" alt="${hour.weather[0].description}"></div>
+                      <div class="current">${hour.main.temp}℃</div>
                   </div>
               `;
               document.querySelector('.five-hours-forecast').innerHTML = hourlyHtml
-                }
-
+            })
           // displaying the daily data
-                let dailyHtml = ''
-                for(let y = 0; y < days.length; y++){
-                  const iconCode = days[y].weather[0].icon;
+          let dailyHtml = ''
+          days.forEach(day => {
+            const iconCode = day.weather[0].icon;
                   const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
                   dailyHtml += `
                   <div class="first day">
-                    <span id="first-day-icon"><img src="${iconUrl}" alt="${days[y].weather[0].description}"></span>
+                    <span id="first-day-icon"><img src="${iconUrl}" alt="${day.weather[0].description}"></span>
                     <span id="first- day-date">
-                        <p id="day-of-the-week">${days[y].dt_txt.split(' ')[0]}</p>
-                        <p id="weather-description">${days[y].weather[0].description}</p>
+                        <p id="day-of-the-week">${day.dt_txt.split(' ')[0]}</p>
+                        <p id="weather-description">${day.weather[0].description}</p>
                     </span>
                     <span id="temp">
-                        <p id="main-temp-of-the-day">${days[y].main.temp}°</p>
-                        <p id="temp-range">/${days[y].main.temp_max}°</p>
+                        <p id="main-temp-of-the-day">${day.main.temp}°</p>
+                        <p id="temp-range">/${day.main.temp_max}°</p>
                     </span>
                  </div>
                   `; 
                   document.querySelector('.next-five-days').innerHTML = dailyHtml
-                }
+          })
+                
                 const humidity =  data.list[0].main.humidity;
                 const feelsLike = data.list[0].main.feels_like;
                 const windSpeed = data.list[0].wind.speed;

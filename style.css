@@ -57,6 +57,7 @@ i {
     border: none;
     border-bottom: 1px solid #515151;
     background: transparent;
+    color: white;
   }
   
   .wave-group .input:focus {
@@ -64,7 +65,7 @@ i {
   }
   
   .wave-group .label {
-    color: #999;
+    color: #fff;
     font-size: 18px;
     font-weight: normal;
     position: absolute;
@@ -182,7 +183,7 @@ button {
     color: white;
 }
 .hour:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     transition: .5s;
 }
 .daily-display {
@@ -212,7 +213,7 @@ button {
     max-width: 50rem;
 }
 .day:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     /* transform: scaleY(-50px); */
     transition: .5s;
 }
