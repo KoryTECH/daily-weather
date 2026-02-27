@@ -1,11 +1,11 @@
-# 🌤️ Daily Weather App
+#  Daily Weather App
 
 A beautiful and responsive weather forecast application that provides real-time weather information based on your location or any city worldwide.
 
 <img width="1365" height="646" alt="image" src="https://github.com/user-attachments/assets/44bf78ed-681b-4b57-ba27-409995f41cd0" />
 
 
-## 🌟 Features
+## Features
 
 - **Real-time Weather Data**: Get current weather conditions for any location
 - **Geolocation Support**: Automatically detects and displays weather for your current location
@@ -20,11 +20,11 @@ A beautiful and responsive weather forecast application that provides real-time 
 - **Responsive Design**: Fully optimized for desktop, tablet, and mobile devices
 - **Beautiful UI**: Clean, modern interface with smooth animations and hover effects
 
-## 🚀 Live Demo
+##  Live Demo
 
 Check out the live application: [Daily Weather App](https://korytech.github.io/daily-weather/)
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 - **HTML5**: Structure and semantic markup
 - **CSS3**: Styling, animations, and responsive design
@@ -33,7 +33,7 @@ Check out the live application: [Daily Weather App](https://korytech.github.io/d
 - **Font Awesome**: Icons for enhanced UI
 - **Google Fonts (Space Grotesk)**: Modern typography
 
-## 📋 Prerequisites
+##  Prerequisites
 
 To run this project locally, you'll need:
 
@@ -41,7 +41,7 @@ To run this project locally, you'll need:
 - An API key from [OpenWeather](https://openweathermap.org/api)
 - A local development server (optional, but recommended)
 
-## ⚙️ Installation & Setup
+##  Installation & Setup
 
 1. **Clone the repository**
 ```bash
@@ -74,7 +74,7 @@ To run this project locally, you'll need:
 5. **Access the app**
    - Navigate to `http://localhost:8000` (or the port your server uses)
 
-## 🎯 Usage
+##  Usage
 
 1. **On First Load**: The app will request your location permission to show weather for your current location
 2. **Search for a City**: 
@@ -90,12 +90,12 @@ To run this project locally, you'll need:
 - **Tablet**: 481px - 768px
 - **Mobile**: 480px and below
 
-## 🔑 API Endpoints Used
+##  API Endpoints Used
 
 - **Weather Forecast**: `https://api.openweathermap.org/data/2.5/forecast`
 - **Geocoding**: `https://api.openweathermap.org/geo/1.0/direct`
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Here's how you can help:
 
@@ -106,7 +106,7 @@ Contributions are welcome! Here's how you can help:
 5. Push to the branch (`git push origin feature/improvement`)
 6. Create a Pull Request
 
-## 📝 Future Enhancements
+##  Future Enhancements
 
 - [ ] Add weather alerts and warnings
 - [ ] Implement favorite locations
@@ -116,27 +116,27 @@ Contributions are welcome! Here's how you can help:
 - [ ] Historical weather data
 - [ ] Weather comparison between cities
 
-## 📄 License
+##  License
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## 👨‍💻 Author
+##  Author
 
 **KoryTECH**
 - GitHub: [@KoryTECH](https://github.com/KoryTECH)
 - Project Link: [https://github.com/KoryTECH/daily-weather](https://github.com/KoryTECH/daily-weather)
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - Weather data provided by [OpenWeather API](https://openweathermap.org/)
 - Icons from [Font Awesome](https://fontawesome.com/)
 - Font from [Google Fonts](https://fonts.google.com/)
 - Background image from [Unsplash](https://unsplash.com/) (if applicable)
 
-## 📧 Support
+##  Support
 
 If you have any questions or run into issues, please [open an issue](https://github.com/KoryTECH/daily-weather/issues) on GitHub.
 
 ---
 
-⭐ If you found this project helpful, please consider giving it a star!
+ If you found this project helpful, please consider giving it a star!

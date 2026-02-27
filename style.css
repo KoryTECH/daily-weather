@@ -131,6 +131,10 @@ button {
     justify-content: center;
     align-items: center;
 }
+button:active {
+    transform: scale(1.1);
+    background: blue;
+}
 .weather-info {
     display: flex;
     justify-content: center;

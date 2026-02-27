@@ -1,110 +1,127 @@
-'use strict'
+"use strict";
 const OPENWEATHER_URL = `https://api.openweathermap.org/data/2.5/forecast`;
 const OPENWEATHER_KEY = `5efc126ec2af885ecd3006733142d32b`;
 const OPENCAGE_KEY = `75caf9cfcc1c44f2914802b3d1cd08aa`;
 let lat;
 let lon;
-const button = document.querySelector('button');
-const input = document.getElementById('input')
+const button = document.querySelector("button");
+const input = document.querySelector("input");
+
+// debugger
 
 // function to fetch and display data from openweather api
-function fetchAndDisplay(){
-  fetch(`${OPENWEATHER_URL}?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_KEY}&units=metric`)
-        .then(response => response.json())
-        .then(data => {
-          console.log(data)
-            const date = data.list[0].dt_txt.split(' ')[0]
-            const locationName = data.city.name;
-            const minRange = data.list[0].main.temp_min;
-            const maxRange = data.list[0].main.temp_max;
-            const description = data.list[0].weather[0].description
-            const temIcon = data.list[0].weather[0].icon
-            // the display of the main information
-            document.getElementById('main-temp').innerText  = `${data.list[0].main.temp}℃`;
-            document.getElementById('location').innerText = locationName;
-            document.getElementById('date').innerText = date;
-            document.getElementById('temp-description').innerText = description;
-            document.getElementById('temp-icon').innerHTML = `<img src="https://openweathermap.org/img/wn/${temIcon}@2x.png" alt="${description}">`;   
-            document.getElementById('temp-range').innerText = `H:${maxRange} L:${minRange}`;
-            // giving a variable to the data List
-            let list = data.list;
-        // gets the first five object in the array and store them in an array called hours
-            let hours = [];
-            for (let i = 0; i < 5; i++) {
-              hours.push(list[i]);
-            }
-            // gets the five days out of the response from the api
-            let days = [];
-            for(let index = 0; index < 39; index+=8 ){
-              days.push(list[index])
-            }
-            // displaying the hourly data
-            let hourlyHtml='';
-            hours.forEach(hour => {
-              const iconCode = hour.weather[0].icon;
-                  const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
-                  hourlyHtml += `
+function fetchAndDisplay() {
+  fetch(
+    `${OPENWEATHER_URL}?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_KEY}&units=metric`
+  )
+    .then((response) => {
+      if (!response.ok) {
+        document.getElementById('main-temp').innerText = "Error fetching data"
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const date = data.list[0].dt_txt.split(" ")[0];
+      const locationName = data.city.name;
+      const minRange = data.list[0].main.temp_min;
+      const maxRange = data.list[0].main.temp_max;
+      const description = data.list[0].weather[0].description;
+      const temIcon = data.list[0].weather[0].icon;
+      // the display of the main information
+      document.getElementById(
+        "main-temp"
+      ).innerText = `${data.list[0].main.temp}℃`;
+      document.getElementById("location").innerText = locationName;
+      document.getElementById("date").innerText = date;
+      document.getElementById("temp-description").innerText = description;
+      document.getElementById(
+        "temp-icon"
+      ).innerHTML = `<img src="https://openweathermap.org/img/wn/${temIcon}@2x.png" alt="${description}">`;
+      document.getElementById(
+        "temp-range"
+      ).innerText = `H:${maxRange} L:${minRange}`;
+      // giving a variable to the data List
+      let list = data.list;
+      // gets the first five object in the array and store them in an array called hours
+      let hours = [];
+      for (let i = 0; i < 5; i++) {
+        hours.push(list[i]);
+      }
+      // gets the five days out of the response from the api
+      let days = [];
+      for (let index = 0; index < 39; index += 8) {
+        days.push(list[index]);
+      }
+      // displaying the hourly data
+      let hourlyHtml = "";
+      hours.forEach((hour) => {
+        const iconCode = hour.weather[0].icon;
+        const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+        hourlyHtml += `
                     <div class="hour">
-                      <div class="current">${hour.dt_txt.split(' ')[1]}</div>
-                      <div class="current hourly weather-icon"><img src="${iconUrl}" alt="${hour.weather[0].description}"></div>
+                      <div class="current">${hour.dt_txt.split(" ")[1]}</div>
+                      <div class="current hourly weather-icon"><img src="${iconUrl}" alt="${
+          hour.weather[0].description
+        }"></div>
                       <div class="current">${hour.main.temp}℃</div>
                   </div>
               `;
-              document.querySelector('.five-hours-forecast').innerHTML = hourlyHtml
-            })
-          // displaying the daily data
-          let dailyHtml = ''
-          days.forEach(day => {
-            const iconCode = day.weather[0].icon;
-                  const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
-                  dailyHtml += `
+        document.querySelector(".five-hours-forecast").innerHTML = hourlyHtml;
+      });
+      // displaying the daily data
+      let dailyHtml = "";
+      days.forEach((day) => {
+        const iconCode = day.weather[0].icon;
+        const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+        dailyHtml += `
                   <div class="first day">
-                    <span id="first-day-icon"><img src="${iconUrl}" alt="${day.weather[0].description}"></span>
+                    <span id="first-day-icon"><img src="${iconUrl}" alt="${
+          day.weather[0].description
+        }"></span>
                     <span id="first- day-date">
-                        <p id="day-of-the-week">${day.dt_txt.split(' ')[0]}</p>
-                        <p id="weather-description">${day.weather[0].description}</p>
+                        <p id="day-of-the-week">${day.dt_txt.split(" ")[0]}</p>
+                        <p id="weather-description">${
+                          day.weather[0].description
+                        }</p>
                     </span>
                     <span id="temp">
                         <p id="main-temp-of-the-day">${day.main.temp}°</p>
                         <p id="temp-range">/${day.main.temp_max}°</p>
                     </span>
                  </div>
-                  `; 
-                  document.querySelector('.next-five-days').innerHTML = dailyHtml
-          })
-                
-                const humidity =  data.list[0].main.humidity;
-                const feelsLike = data.list[0].main.feels_like;
-                const windSpeed = data.list[0].wind.speed;
-                const pressure = data.list[0].main.pressure;
+                  `;
+        document.querySelector(".next-five-days").innerHTML = dailyHtml;
+      });
 
-                  document.getElementById('humidity').innerText = humidity;
-                  document.getElementById('pressure').innerText = pressure;
-                  document.getElementById('wind-speed').innerText = windSpeed;
-                  document.getElementById('feels-like').innerText = feelsLike;
+      const humidity = data.list[0].main.humidity;
+      const feelsLike = data.list[0].main.feels_like;
+      const windSpeed = data.list[0].wind.speed;
+      const pressure = data.list[0].main.pressure;
 
-            
-        })
-        .catch(error => {
-          document.getElementById('main-temp').innerText  = 'Refresh'
-          console.error("Error:", error);
-        })
-  }
-let cityName = '';
+      document.getElementById("humidity").innerText = humidity;
+      document.getElementById("pressure").innerText = pressure;
+      document.getElementById("wind-speed").innerText = windSpeed;
+      document.getElementById("feels-like").innerText = feelsLike;
+    })
+    .catch((error) => {
+      document.getElementById("main-temp").innerText = "Refresh";
+      console.error("Error:", error);
+    });
+}
+let cityName = "";
 // this function has the api that gets the location entered in the input section then gets the latitude and longitude, then update the longitude and latitude variable
-function getnewLonAndLat(){
-  fetch(`https://api.opencagedata.com/geocode/v1/json?q=${cityName}&key=${OPENCAGE_KEY}`)
-  .then(response => response.json())
-  .then(data => {
-    console.log(data)
-    
-    lat = data.results[0].geometry.lat;
-    lon = data.results[0].geometry.lng;
-    console.log(`lat:${lat}`)
-    console.log(`lon:${lon}`)
-    fetchAndDisplay()
-
-  })
+function getnewLonAndLat() {
+  fetch(
+    `https://api.opencagedata.com/geocode/v1/json?q=${cityName}&key=${OPENCAGE_KEY}`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      document.getElementById("main-temp").innerText = `Loading.........`
+      lat = data.results[0].geometry.lat;
+      lon = data.results[0].geometry.lng;
+      fetchAndDisplay();
+    });
 }
 // getnewLonAndLat()
 // getting the user location(longitude and latitude) onload to fetch the weather info on load and updates the longitude and latitude variable
@@ -113,39 +130,34 @@ window.onload = function () {
     navigator.geolocation.getCurrentPosition((position) => {
       lat = position.coords.latitude;
       lon = position.coords.longitude;
-      fetchAndDisplay()
-      });
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
-}
-const waveGroup = document.querySelector('.wave-group') 
-waveGroup.classList.add('hidden');
-button.addEventListener('click', function(){
-  if(waveGroup.classList.contains('hidden')){
-    waveGroup.classList.remove('hidden');
+      fetchAndDisplay();
+    });
+  } else {
+    console.log("Geolocation is not supported by this browser.");
   }
-  else if(!waveGroup.classList.contains('hidden') && input.value !== '') {
-    cityName = input.value;
-    getnewLonAndLat()
+};
+const waveGroup = document.querySelector(".wave-group");
+waveGroup.classList.add("hidden");
+button.addEventListener("click", function () {
+  if (waveGroup.classList.contains("hidden")) {
+    waveGroup.classList.remove("hidden");
+  } else if (!waveGroup.classList.contains("hidden") && !input.value === "") {
     
+    cityName = input.value;
+    getnewLonAndLat();
+  } else {
+    waveGroup.classList.add("hidden");
   }
-  else {
-    waveGroup.classList.add('hidden')
-  }
-
 });
-input.addEventListener('keyup', function(event){
-  if(event.key === "Enter") {
-    if(waveGroup.classList.contains('hidden')){
-      waveGroup.classList.remove('hidden');
-    }
-    else if(!waveGroup.classList.contains('hidden') && input.value !== '') {
+input.addEventListener("keyup", function (event) {
+  if (event.key === "Enter") {
+    if (waveGroup.classList.contains("hidden")) {
+      waveGroup.classList.remove("hidden");
+    } else if (!waveGroup.classList.contains("hidden") && input.value !== "") {
       cityName = input.value;
-      getnewLonAndLat()
+      getnewLonAndLat();
+    } else {
+      waveGroup.classList.add("hidden");
     }
-    else {
-      waveGroup.classList.add('hidden')
-    }
-}
+  }
 });
